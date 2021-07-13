@@ -2,10 +2,11 @@ import { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
+import darkThemeLogoImg from '../assets/images/dark-theme-logo.svg'
 import { useAuth } from '../hooks/useAuth'
 import { database } from '../services/firebase'
 import { Button } from '../components/Button'
-import '../styles/auth.scss'
+import '../styles/new-room.scss'
 import { ToggleButton } from '../components/Toggle'
 
 export function NewRoom() {
@@ -34,7 +35,7 @@ export function NewRoom() {
 		history.push(`/admin/rooms/${firebaseRoom.key}`)
 	}
     return (
-        <div id="page-auth">
+        <div id="new-room">
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A</strong>
@@ -43,6 +44,7 @@ export function NewRoom() {
             <main className="new-room">
                 <div className="main-content" >
                     <img src={logoImg} alt="Logo Letmeask" className="new-room-logo" />
+                    <img src={darkThemeLogoImg} alt="Logo Letmeask" className="new-room-dark-logo" />
                     <h2>Crie uma nova sala</h2>
                 <form onSubmit={handleCreateRoom} >
                     <input
@@ -56,7 +58,8 @@ export function NewRoom() {
                     </Button>
                     <div className="toggle-type" >
                         <span>Permitir perguntas anônimas?</span>
-                        <ToggleButton onClick={handleSetRoomPermission}/>
+                        <ToggleButton  onClick={handleSetRoomPermission}/>
+                        
                     </div>
                 </form>
                 <p>Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link></p>

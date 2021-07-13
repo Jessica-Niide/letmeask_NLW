@@ -1,5 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom'
 import logoImg from '../assets/images/logo.svg';
+import emptyQuestionsImg from '../assets/images/empty-questions.svg'
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
 import deleteImg from '../assets/images/delete.svg';
@@ -75,16 +76,18 @@ export function AdminRoom() {
 					</div>
 				</div>
 			</header>
-			<main id="room-main">
+			<main>
 				<div className="room-title">
 					<h1>Sala {title}</h1>
 					{questions.length > 1 && <span>{questions.length} perguntas</span>}
 					{questions.length === 1 && <span>Uma pergunta</span>}
-					{questions.length === 0 && 
-					<div className="empty-room" >
-					<img src={logoImg} alt="" />
-					<span>Nenhuma pergunta por aqui...</span>
-					</div>}
+				</div>
+				<div className="empty-room-background" >
+				{questions.length === 0 && 
+					<>
+					<img src={emptyQuestionsImg} alt="Ilustração simbolizando perguntas" />
+					<p>Nenhuma pergunta por aqui...</p>
+					</>}
 				</div>
 				<div className="question-list">
 					{questions.map(question => {

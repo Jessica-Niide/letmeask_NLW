@@ -6,7 +6,7 @@ import smallHomeImg from '../assets/images/small-home.png';
 import illustrationImg from '../assets/images/illustration.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
-import '../styles/auth.scss';
+import '../styles/home.scss';
 import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
 import { FormEvent } from 'react';

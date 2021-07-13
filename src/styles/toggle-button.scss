@@ -40,6 +40,9 @@
       padding-left: 10px;
       background-color: #835afd;
       color: #fff;
+      &.dark-theme {
+        background-color: #5e3ebe;
+      }
     }
   }
   &-disabled {

@@ -1,12 +1,12 @@
 #page-room {
   header {
     padding: 0 16pt;
-    width: 100%;
+    width: 100vw;
     border-bottom: 1px solid #e2e2e2;
 
     .content {
       max-width: 1120px;
-      margin: 12px auto;
+      margin: clamp(5px, 12px, 24px) auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -24,11 +24,11 @@
   }
 
   main {
-    // background: #835afd;
     max-width: 800px;
-    margin: 12px auto;
-    justify-content: center;
-    padding: 0 16pt;
+    margin: 0 auto;
+    height: 100vh;
+    display: block;
+    background-color: #f8f8f8;
 
     .room-title {
       margin: 32px 0 24px;
@@ -37,7 +37,7 @@
 
       h1 {
         font-family: "Poppins", sans-serif;
-        font-size: 24px;
+        font-size: 24pt;
         color: #29292e;
       }
 
@@ -50,11 +50,16 @@
         font-weight: 500;
         font-size: 14px;
       }
-      .empty-room {
-        span {
-          background: none;
-          color: #29292e;
-        }
+    }
+    .empty-room-background {
+      display: grid;
+      justify-content: center;
+      img {
+        width: 320px;
+      }
+      p {
+        font-family: "Poppins", sans-serif;
+        color: #29292e;
       }
     }
 
