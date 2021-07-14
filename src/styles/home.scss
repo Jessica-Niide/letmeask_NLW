@@ -40,20 +40,13 @@ aside {
     }
   }
 }
-main {
+.main-home {
   display: flex;
   align-items: center;
   justify-self: center;
   padding: 0 24px 10pt;
   background: linear-gradient(#8b57fb, #c694f6);
   height: 70vh;
-  &.new-room {
-    // background: #e8e8e8;
-    height: 100vh;
-    button {
-      background: #e8e8e8;
-    }
-  }
 }
 
 .main-content {
@@ -66,17 +59,6 @@ main {
   .logo {
     display: none;
   }
-  .new-room-logo {
-    display: flex;
-    align-self: center;
-  }
-
-  h2 {
-    font-size: 24px;
-    margin: 64px 0 24px;
-    font-family: "Poppins", sans-serif;
-  }
-
   .button {
     background: #fff;
     color: #835afd;
@@ -97,23 +79,6 @@ main {
     button,
     input {
       width: 100%;
-    }
-  }
-  .toggle-type {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    span {
-      font-size: 12pt;
-    }
-  }
-
-  p {
-    font-size: 14px;
-    color: #737388;
-    margin-top: 16px;
-    a {
-      color: #e559f9;
     }
   }
 }
@@ -180,7 +145,7 @@ main {
     display: none;
   }
   aside {
-    background: #835afd;
+    background: linear-gradient(#835afd, #c694f6);
     color: #fff;
     width: 45vw;
     display: flex;
@@ -204,7 +169,7 @@ main {
       color: #f8f8f8;
     }
   }
-  main {
+  .main-home {
     width: 55vw;
     height: 100vh;
     display: flex;
@@ -224,19 +189,11 @@ main {
       display: flex;
       align-self: center;
     }
-    .new-room-logo {
-      display: flex;
-      align-self: center;
-    }
     .button {
       color: #fff;
       background: #835afd;
     }
-    h2 {
-      font-size: 24px;
-      margin: 64px 0 24px;
-      font-family: "Poppins", sans-serif;
-    }
+
     form {
       input {
         height: 50px;
@@ -258,22 +215,7 @@ main {
       input {
         width: 100%;
       }
-
-      // div {
-      //   display: flex;
-      //   align-items: center;
-      //   justify-content: space-between;
-      // }
     }
-    // p {
-    //   font-size: 14px;
-    //   color: #737380;
-    //   margin-top: 16px;
-
-    //   // a {
-    //   //   color: #e559f9;
-    //   // }
-    // }
   }
 
   .create-room {

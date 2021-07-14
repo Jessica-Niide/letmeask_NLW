@@ -103,12 +103,14 @@ export function AdminRoom() {
 									<>
 										<button
 											type="button"
+											title="Marcar pergunta como respondida"
 											onClick={() => handleCheckQuestionAsAnswered(question.id)}
 										>
 											<img src={checkImg} alt="Marcar pergunta como respondida" />
 										</button>
 										<button
 											type="button"
+											title="Destacar pergunta"
 											onClick={() => handleHighlightQuestion(question.id)}
 										>
 											<img src={answerImg} alt="Destacar pergunta" />
@@ -117,6 +119,7 @@ export function AdminRoom() {
 								)}
 								<button
 									type="button"
+									title="Deletar pergunta"
 									onClick={() => handleDeleteQuestion(question.id)}
 								>
 									<img src={deleteImg} alt="Remover pergunta" />

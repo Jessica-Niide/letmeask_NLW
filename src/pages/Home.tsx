@@ -57,7 +57,7 @@ export function Home() {
                 <strong>Crie salas de Q&amp;A</strong>
                 <p>Todas as perguntas em um só lugar, em tempo real</p>
             </aside>
-            <main>
+            <main className="main-home">
                 <div className="main-content" >
                     <img src={logoImg} alt="Logo Letmeask" className="logo" />
                 <button className="create-room" onClick={handleCreateRoom}>
