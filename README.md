@@ -8,10 +8,10 @@ Let Me Ask é uma aplicação para organizar as perguntas feitas por participant
 
 - HTML
 - CSS
-- React
 - Typescript
-- Firebase
+
+Implementado utilizando React e Firebase.
 
 ## Atualizações na aplicação
 
-Em andamento
+- Tema escuro ainda em desenvolvimento
