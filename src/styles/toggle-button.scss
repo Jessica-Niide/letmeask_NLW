@@ -36,27 +36,16 @@
       box-sizing: border-box;
     }
     &:before {
-      content: "Sim";
+      content: "🔆" / "light";
       padding-left: 10px;
       background-color: #835afd;
       color: #fff;
-      &.dark-theme {
-        background-color: #5e3ebe;
-      }
-    }
-  }
-  &-disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-    &:before {
-      background-color: #ddd;
-      cursor: not-allowed;
     }
   }
   &-inner:after {
-    content: "Não";
+    content: "🔅" / "dark";
     padding-right: 10px;
-    background-color: #bbb;
+    background-color: #401562;
     color: #fff;
     text-align: right;
   }

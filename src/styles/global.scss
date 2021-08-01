@@ -4,10 +4,27 @@
   box-sizing: border-box;
 }
 
+html {
+  --bg: #f8f8f8;
+  --bg-lighter: #fff;
+  --bg-darker: #e8e8e8;
+  --color: #292929;
+  --g1: #835afd;
+  --g2: #8b57fb;
+  --g3: #c694f6;
+  --upper-gradient: linear-gradient(var(--g1), var(--g2));
+  --lower-gradient: linear-gradient(var(--g2), var(--g3));
+  --gradient: linear-gradient(var(--g1), var(--g3));
+  --border: #b0b0c0;
+  --highlighted-bg: #f4f0ff;
+  --highlighted-border: #835afd;
+  --liked-bg: #dbdcdd;
+  --button-color: #fff;
+}
+
 body {
-  // background: rgb(49, 49, 49);
-  background: #f8f8f8;
-  color: #29292e;
+  background: var(--bg);
+  color: var(--color);
 }
 
 body,

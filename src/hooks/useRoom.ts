@@ -27,11 +27,11 @@ type FirebaseQuestions = Record<string, {
 }>
 
 export function useRoom(roomId: string) {
-    const {user} = useAuth();
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [roomPermission, setRoomPermission] = useState(false);
-    const [questions, setQuestions] = useState<QuestionType[]>([]);
+    const { user } = useAuth();
+    const [ title, setTitle]  = useState('');
+    const [ author, setAuthor ] = useState('');
+    const [ roomPermission, setRoomPermission ] = useState(false);
+    const [ questions, setQuestions ] = useState<QuestionType[]>([]);
 
     useEffect(() => {
         const roomRef = database.ref(`rooms/${roomId}`);
@@ -50,11 +50,17 @@ export function useRoom(roomId: string) {
 					likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
 				}
 			});
+			const orderedQuestions = parsedQuestions.sort((a) => 
+			!a.isHighlighted ? 1 : -1);
+			const reOrderedQuestions = orderedQuestions.sort((a, b) => 
+			b.isAnswered ? -1 : 1);
+			const finalQuestions = reOrderedQuestions.sort((a, b) => 
+			!b.isHighlighted ? b.likeCount - a.likeCount : 1)
 
 			setTitle(databaseRoom.title);
 			setAuthor(databaseRoom.authorId);
 			setRoomPermission(databaseRoom.roomPerm);
-			setQuestions(parsedQuestions);
+			setQuestions(finalQuestions);
 		})
 
 		return () => {

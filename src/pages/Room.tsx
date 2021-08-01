@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams, useHistory } from 'react-router-dom'
-import logoImg from '../assets/images/logo.svg';
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
+import { lightColorScheme, darkColorScheme, useTheme } from '../hooks/useTheme';
 import { database } from '../services/firebase';
+import { Button } from '../components/Button';
+import { ToggleButton } from '../components/Toggle';
+import { Question } from '../components/Question';
+import { RoomCode } from '../components/RoomCode';
+import darkThemeLogoImg from '../assets/images/dark-theme-logo.svg';
+import logoImg from '../assets/images/logo.svg';
 import '../styles/room.scss';
 
 type RoomParams = {
@@ -22,6 +24,23 @@ export function Room() {
 	const [newQuestion, setNewQuestion] = useState('');
 	const { questions, title, roomPermission } = useRoom(roomId);
 	const history = useHistory();
+	const { themeName, changeTheme } = useTheme();
+	const [ colorTheme, setColorTheme ] = useState(themeName);
+
+    if (!colorTheme) {
+        const initial = localStorage.getItem("theme");
+        if (initial === 'light') {
+            setColorTheme('light')
+        }
+        else {
+            setColorTheme('dark')
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem("theme", colorTheme);
+        changeTheme(colorTheme === 'dark' ? darkColorScheme : lightColorScheme);
+	}, [ colorTheme, changeTheme ]);
 
 
 	useEffect(() => {
@@ -70,14 +89,27 @@ export function Room() {
 		}
 	}
 
+	async function handleLeaveRoom() {
+		if (window.confirm('Tem certeza que você deseja sair da sala?')) {
+			history.push('/');
+			}
+	}
+
 	async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
 		if (user) {
 			if (likeId) {
-				await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove()
+				await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
+				toast('Ixi', {
+					icon: '😟',
+				});
 			} else {
 				await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
 					authorId: user?.id,
-				})
+				});
+				toast('Curtiu!',{
+					icon: '👏',
+					duration: 1000,
+				});
 			}
 		}
 		if (!user) {
@@ -88,12 +120,18 @@ export function Room() {
 	return (
 		<>
 		<div id="page-room">
+		<Toaster />
 			<header>
 				<div className="content">
-					<img src={logoImg} alt="Letmeask" />
-					<div>
+				<img src={colorTheme === 'dark' ? darkThemeLogoImg : logoImg} alt="Logo Letmeask" className="logo" />
+					<div className="room-options">
 						<RoomCode code={roomId} />
-						<Button isOutlined onClick={() => history.push('/')}>Sair da sala</Button>
+						<Button isOutlined onClick={handleLeaveRoom}>Sair da sala</Button>
+						<ToggleButton
+		            	name="toggle-theme"
+            			checked={themeName === 'dark' ? true : false}
+            			onChange={event => (event.target.checked) ? setColorTheme('dark') : setColorTheme('light')}
+            			value={colorTheme}/>
 					</div>
 				</div>
 			</header>
@@ -155,7 +193,6 @@ export function Room() {
 				</div>
 			</main>
 		</div>
-		<Toaster />
 		</>
 	);
 }

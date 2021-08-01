@@ -1,20 +1,39 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { darkColorScheme, lightColorScheme, useTheme } from '../hooks/useTheme'
+import { database } from '../services/firebase'
+import { Button } from '../components/Button'
+import { ToggleButton } from '../components/Toggle'
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import darkThemeLogoImg from '../assets/images/dark-theme-logo.svg'
-import { useAuth } from '../hooks/useAuth'
-import { database } from '../services/firebase'
-import { Button } from '../components/Button'
+import smallHomeImg from '../assets/images/small-home.png';
 import '../styles/new-room.scss'
-import { ToggleButton } from '../components/Toggle'
 
 export function NewRoom() {
-	const { user } = useAuth();
 	const history = useHistory();
-	const [newRoom, setNewRoom] = useState('');
-	const [roomPermission, setRoomPermission] = useState(false);
+	const { user } = useAuth();
+    const { themeName, changeTheme } = useTheme();
+    const [ colorTheme, setColorTheme ] = useState(themeName);
+	const [ newRoom, setNewRoom ] = useState('');
+	const [ roomPermission, setRoomPermission ] = useState(false);
 
+    if (!colorTheme) {
+        const initial = localStorage.getItem("theme");
+        if (initial === 'light') {
+            setColorTheme('light')
+        }
+        else {
+            setColorTheme('dark')
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem("theme", colorTheme);
+        changeTheme(colorTheme === 'dark' ? darkColorScheme : lightColorScheme);
+	}, [ colorTheme, changeTheme ]);
+    
 	async function handleSetRoomPermission() {
 		setRoomPermission(!roomPermission);
 		return ;
@@ -34,8 +53,16 @@ export function NewRoom() {
 		})
 		history.push(`/admin/rooms/${firebaseRoom.key}`)
 	}
+
     return (
         <div id="new-room">
+            <header className="toggles">
+            <ToggleButton
+            name="theme-toggle"
+            checked={themeName === 'dark' ? true : false}
+            onChange={event => (event.target.checked) ? setColorTheme('dark') : setColorTheme('light')}
+            value={colorTheme}/>
+            </header>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A</strong>
@@ -43,8 +70,10 @@ export function NewRoom() {
             </aside>
             <main className="new-room">
                 <div className="main-content" >
-                    <img src={logoImg} alt="Logo Letmeask" className="new-room-logo" />
-                    <img src={darkThemeLogoImg} alt="Logo Letmeask" className="new-room-dark-logo" />
+                <img src={darkThemeLogoImg} alt="Logo Letmeask" className="new-room-mobile-logo"/>
+                <img src={smallHomeImg} alt="Ilustração simbolizando perguntas e respostas" className="new-room-mobile-img"/>
+
+                <img src={colorTheme === 'dark' ? darkThemeLogoImg : logoImg} alt="Logo Letmeask" className="logo" />
                     <h2>Crie uma nova sala</h2>
                 <form onSubmit={handleCreateRoom} >
                     <input
@@ -56,10 +85,12 @@ export function NewRoom() {
                     <Button type="submit">
                         Criar sala
                     </Button>
-                    <div className="toggle-type" >
+                    <div className="anonymous-permission" >
                         <span>Permitir perguntas anônimas?</span>
-                        <ToggleButton  onClick={handleSetRoomPermission}/>
-                        
+                        <input 
+                            type="checkbox" 
+                            className="checkbox"
+                            onChange={handleSetRoomPermission} />
                     </div>
                 </form>
                 <p>Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link></p>
