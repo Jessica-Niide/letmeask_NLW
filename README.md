@@ -14,4 +14,5 @@ Implementado utilizando React e Firebase.
 
 ## Atualizações na aplicação
 
-- Tema escuro ainda em desenvolvimento
+- Opção de perguntas anônimas
+- Tema escuro adicionado
