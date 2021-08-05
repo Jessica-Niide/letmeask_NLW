@@ -13,7 +13,6 @@ type colorScheme = {
 	upperGradient: string;
 	lowerGradient: string;
 	gradient: string;
-	border: string;
 	highlightedBg: string;
 	likedBg: string;
 	buttonColor: string;
@@ -31,12 +30,11 @@ export const lightColorScheme: colorScheme = {
 	upperGradient: "linear-gradient(var(--g1), var(--g2))",
 	lowerGradient: "linear-gradient(var(--g2), var(--g3))",
 	gradient: "linear-gradient(var(--g1), var(--g3))",
-	border: "#b0b0c0",
 	highlightedBg: "#f4f0ff",
 	likedBg: "#dbdcdd",
 	buttonColor: "#FFF",
 }
-//-Mfu1fLkUkDyaaMRXH4O
+
 export const darkColorScheme: colorScheme = {
 	name: "dark",
 	bg: "#5c5c5f",
@@ -49,7 +47,6 @@ export const darkColorScheme: colorScheme = {
 	upperGradient: "linear-gradient(var(--g1), var(--g2))",
 	lowerGradient: "linear-gradient(var(--g2), var(--g3))",
 	gradient: "linear-gradient(var(--g1), var(--g3))",
-	border: "#b0b0c0",
 	highlightedBg: "#403945",
 	likedBg: "#5551518c",
 	buttonColor: "#835afd",

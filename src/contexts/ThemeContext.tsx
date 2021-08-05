@@ -12,7 +12,6 @@ type Theme = {
 	upperGradient: string;
 	lowerGradient: string;
 	gradient: string;
-	border: string;
     highlightedBg: string;
     likedBg: string;
     buttonColor: string;
@@ -54,7 +53,6 @@ export function ThemeContextProvider(props: ThemeContextProviderProps) {
         document.querySelector("html")?.style.setProperty("--upper-gradient", definedTheme.upperGradient)
         document.querySelector("html")?.style.setProperty("--lower-gradient", definedTheme.lowerGradient)
         document.querySelector("html")?.style.setProperty("--gradient", definedTheme.gradient)
-        document.querySelector("html")?.style.setProperty("--border", definedTheme.border)
         document.querySelector("html")?.style.setProperty("--highlighted-bg", definedTheme.highlightedBg)
         document.querySelector("html")?.style.setProperty("--liked-bg", definedTheme.likedBg)
         document.querySelector("html")?.style.setProperty("--button-color", definedTheme.buttonColor)

@@ -56,7 +56,7 @@ aside {
       padding: 0 16px;
       background: var(--bg-lighter);
       color: var(--color);
-      border: 1px solid var(--border);
+      border: 1px solid #b0b0c0;
     }
 
     button {
@@ -161,7 +161,7 @@ aside {
         padding: 0 16px;
         background: var(--bg-lighter);
         color: var(--color);
-        border: 1px solid var(--border);
+        border: 1px solid #b0b0c0;
       }
 
       button {
@@ -178,7 +178,7 @@ aside {
         justify-content: space-between;
         span {
           font-size: 12pt;
-          color: #737380;
+          color: #9393a9;
         }
         .checkbox {
           width: 20px;
@@ -187,7 +187,7 @@ aside {
     }
     p {
       font-size: 14px;
-      color: #737380;
+      color: #9393a9;
       margin-top: 16px;
 
       a {

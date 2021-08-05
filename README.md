@@ -6,6 +6,8 @@ Let Me Ask é uma aplicação para organizar as perguntas feitas por participant
 
 ![Página inicial da aplicação](/light_dark_theme.svg?raw=true "Tela inicial da aplicação com os temas claro e escuro")
 
+Crie suas salas de perguntas e respostas acessando a aplicação em **[LetMeAsk](https://letmeask-d6b20.web.app/)**
+
 ## Tecnologias
 
 - HTML
@@ -14,7 +16,7 @@ Let Me Ask é uma aplicação para organizar as perguntas feitas por participant
 
 Implementado utilizando React e Firebase.
 
-## Atualizações na aplicação
+## Funções adicionadas na aplicação
 
 - Opção de perguntas anônimas
 - Tema escuro adicionado
